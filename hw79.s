@@ -5,6 +5,14 @@
 relation_code:
     # TODO: Problem 1
     movq $0, %rax
+    cmpq %rsi, %rdi
+    jge .Lrel_unsigned      
+    addq $1, %rax          
+.Lrel_unsigned:
+    cmpq %rsi, %rdi         
+    jae .Lrel_done          
+    addq $2, %rax          
+.Lrel_done:
     ret
 
     .globl clamp_long
